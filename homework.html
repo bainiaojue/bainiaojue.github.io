@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的個人簡介網頁</title>
+    <style>
+        /* 基礎樣式設定 */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #e9ecef;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* 主容器樣式 - 三欄佈局 */
+        .container {
+            width: 100%;
+            max-width: 1000px; /* 寬度增加 */
+            display: grid;
+            grid-template-columns: 250px 1fr 200px; /* 左側 | 中間（主體） | 右側 */
+            gap: 25px; 
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+        
+        /* 標題樣式 */
+        .title {
+            grid-column: 1 / 4; /* 讓標題橫跨三欄 */
+            text-align: center;
+            color: #007bff;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #007bff;
+            margin-bottom: 10px;
+        }
+
+        /* 左側區塊：個人資訊與頭像 */
+        .left-panel {
+            background-color: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            border-left: 5px solid #007bff;
+        }
+
+        .left-panel img {
+            width: 100%;
+            max-width: 150px;
+            border-radius: 50%; /* 圓形頭像 */
+            margin-bottom: 15px;
+            border: 3px solid #ced4da;
+        }
+
+        .input-area {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px dashed #ced4da;
+        }
+
+        .input-area button {
+            display: block;
+            width: 90%;
+            margin: 10px auto;
+            padding: 10px;
+            background-color: #28a745; /* 綠色按鈕 */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* 中間區塊：主內容區（例如履歷或作品集） */
+        .main-content {
+            background-color: #fff3e0; /* 模擬原來的橙色區塊，但顏色較柔和 */
+            min-height: 500px; 
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .main-content h2 {
+            color: #e65100;
+        }
+
+        /* 右側區塊：輔助控制與連結 */
+        .right-panel {
+            background-color: #f8f9fa;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            border-radius: 8px;
+            border-right: 5px solid #007bff;
+        }
+
+        .control-button {
+            padding: 12px;
+            text-align: center;
+            background-color: #6c757d; /* 灰色按鈕 */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .control-button:hover {
+            background-color: #495057;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">我的個人網站 / 數位作品集</h1>
+
+        <div class="left-panel">
+            <h3>關於我</h3>
+            <img src="my_profile_photo.jpg" alt="個人頭像" style="background-color: lightgray;">
+            
+            <p><strong>姓名：</strong> 您的名字</p>
+            <p><strong>職位/學生：</strong> 網頁設計初學者</p>
+
+            <div class="input-area">
+                <p>聯絡方式 (輸入區)</p>
+                <input type="email" placeholder="我的Email@example.com" style="width: 85%; padding: 5px;">
+                <button>發送訊息</button>
+            </div>
+        </div>
+        
+        <div class="main-content">
+            <h2>主要內容展示區 (作品集/技能樹)</h2>
+            <p>這是您網頁的核心內容區。您可以將您的專案介紹、學術背景或個人技能清單放在這裡。</p>
+            
+            <ul>
+                <li><strong>專案一：</strong> 使用 HTML/CSS 完成本網站設計。</li>
+                <li><strong>技能：</strong> 基礎的網頁結構與樣式撰寫。</li>
+                <li><strong>目標：</strong> 學習更多 JavaScript 互動功能。</li>
+            </ul>
+        </div>
+        
+        <div class="right-panel">
+            <p><strong>輔助導航 / 下載</strong></p>
+            <button class="control-button">作品集連結 (回到下一步)</button>
+            <button class="control-button">下載履歷 (重新開始)</button>
+            <p style="text-align: center; font-size: 14px; margin-top: 10px;">外部資源與社群連結</p>
+        </div>
+    </div>
+</body>
+</html>
