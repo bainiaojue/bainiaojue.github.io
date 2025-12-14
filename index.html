@@ -3,152 +3,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的個人簡介網頁</title>
+    <title>AI 輔助生成小遊戲：猜數字</title>
     <style>
-        /* 基礎樣式設定 */
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #e9ecef;
+            font-family: 'Arial', sans-serif;
             display: flex;
+            flex-direction: column;
+            align-items: center;
             justify-content: center;
+            min-height: 100vh;
+            background-color: #f4f7f6;
+            margin: 0;
         }
 
-        /* 主容器樣式 - 三欄佈局 */
-        .container {
-            width: 100%;
-            max-width: 1000px; /* 寬度增加 */
-            display: grid;
-            grid-template-columns: 250px 1fr 200px; /* 左側 | 中間（主體） | 右側 */
-            gap: 25px; 
+        .game-container {
             background-color: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-        }
-        
-        /* 標題樣式 */
-        .title {
-            grid-column: 1 / 4; /* 讓標題橫跨三欄 */
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
             text-align: center;
-            color: #007bff;
-            padding-bottom: 20px;
-            border-bottom: 2px solid #007bff;
+            width: 90%;
+            max-width: 400px;
+        }
+
+        h1 {
+            color: #333;
             margin-bottom: 10px;
         }
 
-        /* 左側區塊：個人資訊與頭像 */
-        .left-panel {
-            background-color: #f8f9fa;
-            padding: 20px;
-            text-align: center;
-            border-radius: 8px;
-            border-left: 5px solid #007bff;
+        p {
+            color: #666;
+            margin-bottom: 25px;
         }
 
-        .left-panel img {
-            width: 100%;
-            max-width: 150px;
-            border-radius: 50%; /* 圓形頭像 */
-            margin-bottom: 15px;
-            border: 3px solid #ced4da;
-        }
-
-        .input-area {
-            margin-top: 20px;
-            padding-top: 15px;
-            border-top: 1px dashed #ced4da;
-        }
-
-        .input-area button {
-            display: block;
-            width: 90%;
-            margin: 10px auto;
+        input[type="number"] {
             padding: 10px;
-            background-color: #28a745; /* 綠色按鈕 */
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        /* 中間區塊：主內容區（例如履歷或作品集） */
-        .main-content {
-            background-color: #fff3e0; /* 模擬原來的橙色區塊，但顏色較柔和 */
-            min-height: 500px; 
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
-        }
-
-        .main-content h2 {
-            color: #e65100;
-        }
-
-        /* 右側區塊：輔助控制與連結 */
-        .right-panel {
-            background-color: #f8f9fa;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            border-radius: 8px;
-            border-right: 5px solid #007bff;
-        }
-
-        .control-button {
-            padding: 12px;
+            width: calc(100% - 22px);
+            margin-bottom: 15px;
+            border: 2px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
             text-align: center;
-            background-color: #6c757d; /* 灰色按鈕 */
+        }
+
+        button {
+            background-color: #007bff;
             color: white;
+            padding: 12px 20px;
             border: none;
-            border-radius: 5px;
+            border-radius: 6px;
             cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
             transition: background-color 0.3s;
         }
 
-        .control-button:hover {
-            background-color: #495057;
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #message {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 6px;
+            font-weight: bold;
+            min-height: 30px;
+        }
+
+        .correct {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .high-low {
+            background-color: #ffeeba;
+            color: #856404;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1 class="title">我的個人網站 / 數位作品集</h1>
 
-        <div class="left-panel">
-            <h3>關於我</h3>
-            <img src="my_profile_photo.jpg" alt="個人頭像" style="background-color: lightgray;">
-            
-            <p><strong>姓名：</strong> 您的名字</p>
-            <p><strong>職位/學生：</strong> 網頁設計初學者</p>
+    <div class="game-container">
+        <h1>🔢 猜數字遊戲</h1>
+        <p>請猜一個 1 到 100 之間的數字，您有 10 次機會。</p>
 
-            <div class="input-area">
-                <p>聯絡方式 (輸入區)</p>
-                <input type="email" placeholder="我的Email@example.com" style="width: 85%; padding: 5px;">
-                <button>發送訊息</button>
-            </div>
-        </div>
+        <input type="number" id="guessInput" min="1" max="100" placeholder="輸入您的猜測...">
+        <button onclick="checkGuess()">猜猜看！</button>
         
-        <div class="main-content">
-            <h2>主要內容展示區 (作品集/技能樹)</h2>
-            <p>這是您網頁的核心內容區。您可以將您的專案介紹、學術背景或個人技能清單放在這裡。</p>
-            
-            <ul>
-                <li><strong>專案一：</strong> 使用 HTML/CSS 完成本網站設計。</li>
-                <li><strong>技能：</strong> 基礎的網頁結構與樣式撰寫。</li>
-                <li><strong>目標：</strong> 學習更多 JavaScript 互動功能。</li>
-            </ul>
-        </div>
+        <div id="message"></div>
+        <p id="attempts"></p>
         
-        <div class="right-panel">
-            <p><strong>輔助導航 / 下載</strong></p>
-            <button class="control-button">作品集連結 (回到下一步)</button>
-            <button class="control-button">下載履歷 (重新開始)</button>
-            <p style="text-align: center; font-size: 14px; margin-top: 10px;">外部資源與社群連結</p>
-        </div>
+        <button onclick="resetGame()" id="resetButton" style="display: none; background-color: #dc3545;">重新開始</button>
     </div>
-</body>
-</html>
+
+    <script>
+        // --- 遊戲邏輯 (JavaScript) ---
+        
+        let secretNumber; // 電腦要猜的數字
+        let attemptsLeft = 10; // 剩餘猜測次數
+        
+        const guessInput = document.getElementById('guessInput');
+        const messageDisplay = document.getElementById('message');
+        const attemptsDisplay = document.getElementById('attempts');
+        const guessButton = document.querySelector('button[onclick="checkGuess()"]');
+        const resetButton = document.getElementById('resetButton');
+
+        // 初始化遊戲
+        function startGame() {
+            // 隨機生成 1 到 100 的整數
+            secretNumber = Math.floor(Math.random() * 100) + 1;
+            attemptsLeft = 10;
+            updateDisplay();
+            
+            messageDisplay.textContent = '遊戲開始，祝您好運！';
+            messageDisplay.className = '';
+            guessButton.disabled = false;
+            guessInput.value = '';
+            guessInput.disabled = false;
+            resetButton.style.display = 'none';
+        }
+
+        // 更新嘗試次數顯示
+        function updateDisplay() {
+            attemptsDisplay.textContent = `剩餘猜測次數：${attemptsLeft}`;
+        }
+
+        // 檢查使用者猜測
+        function checkGuess() {
+            const userGuess = parseInt(guessInput.value);
+
+            // 輸入驗證
+            if (isNaN(userGuess) || userGuess < 1 || userGuess > 100) {
+                setMessage('請輸入 1 到 100 之間的有效數字！', 'high-low');
+                return;
+            }
+
+            // 減少猜測次數
+            attemptsLeft--;
+            updateDisplay();
+
+            if (userGuess === secretNumber) {
+                // 猜對了！
+                setMessage(`恭
